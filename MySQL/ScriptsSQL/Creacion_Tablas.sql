@@ -4,9 +4,7 @@
  ID SIGAA: 000547528
  */
 
--- ---------------------------------------------------------------------
--- 1. TABLA: organizacion
--- ---------------------------------------------------------------------
+
 create table organizacion (
     id_organizacion int unsigned not null auto_increment primary key,
     nombre_organizacion varchar(100)  not null unique,
@@ -16,9 +14,7 @@ create table organizacion (
     constraint ck_organizacion_tamano check (tamano_empleados > 0)
 );
 
--- ---------------------------------------------------------------------
--- 2. TABLA: tipo_dato
--- ---------------------------------------------------------------------
+
 create table tipo_dato (
     id_tipo_dato int unsigned auto_increment primary key,
     nombre_tipo_dato varchar(50) not null unique,
@@ -27,9 +23,7 @@ create table tipo_dato (
         check (categoria_sensibilidad IN ('Baja', 'Media', 'Alta', 'Critica'))
 );
 
--- ---------------------------------------------------------------------
--- 3. TABLA: brecha
--- ---------------------------------------------------------------------
+
 create table brecha (
     id_brecha int unsigned not null auto_increment primary key,
     codigo_brecha char(8) not null unique,
@@ -49,9 +43,7 @@ create table brecha (
     constraint ck_brecha_costo check (costo_estimado >= 0)
 );
 
--- ---------------------------------------------------------------------
--- 4. TABLA: usuario
--- ---------------------------------------------------------------------
+
 create table usuario (
     id_usuario int unsigned not null auto_increment primary key,
     codigo_usuario    char(9)       not null unique,
@@ -64,9 +56,7 @@ create table usuario (
     foreign key (id_organizacion) references organizacion (id_organizacion)
 );
 
--- ---------------------------------------------------------------------
--- 5. TABLA: exposicion_dato
--- ---------------------------------------------------------------------
+
 create table exposicion_dato (
     id_usuario int unsigned not null,
     id_brecha int unsigned not null,
