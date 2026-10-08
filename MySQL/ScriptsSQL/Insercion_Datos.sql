@@ -1,4 +1,9 @@
-CREATE TABLE stg_sabana
+/*Examen No. 2
+ Motor: MySQL
+ Autor: Andres Arroyave Londoño
+ ID SIGAA: 000547528
+ */
+ CREATE TABLE stg_sabana
 (
     nombre_organizacion           varchar(100),
     sector_organizacion           varchar(50),
