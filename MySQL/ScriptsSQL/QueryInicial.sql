@@ -4,6 +4,7 @@
  ID SIGAA: 000547528
  */
 -- 1. Creación de la base de datos
+drop database if exists seguridad_db;
 create database seguridad_db;
 
 -- 2. Creación del usuario

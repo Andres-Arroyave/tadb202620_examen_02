@@ -11,28 +11,9 @@ El plan pasa de un Table scan sobre las 800 brechas a un Index range scan.
 CREATE INDEX idx_brecha_severidad_fecha ON brecha (severidad, fecha_deteccion);
 SHOW INDEX FROM brecha;
 
--- =====================================================================
--- VISTA: detalle de cada exposicion con los datos de las 5 tablas
--- =====================================================================
-CREATE OR REPLACE VIEW vw_exposicion_detalle AS
-SELECT u.codigo_usuario,
-       b.codigo_brecha,
-       o.nombre_organizacion,
-       b.fecha_ocurrencia,
-       b.fecha_deteccion,
-       b.vector_ataque,
-       b.severidad,
-       t.nombre_tipo_dato,
-       t.categoria_sensibilidad,
-       e.fecha_notificacion
-FROM exposicion_dato e
-         JOIN usuario      u ON u.id_usuario      = e.id_usuario
-         JOIN brecha       b ON b.id_brecha       = e.id_brecha
-         JOIN tipo_dato    t ON t.id_tipo_dato    = e.id_tipo_dato
-         JOIN organizacion o ON o.id_organizacion = b.id_organizacion;
+CREATE INDEX idx_exposicion_tipo_brecha ON exposicion_dato (id_tipo_dato, id_brecha);
+SHOW INDEX FROM exposicion_dato;
 
-
-SELECT * FROM vw_exposicion_detalle WHERE codigo_usuario = 'US-006809' ORDER BY fecha_notificacion;
 
 -- =====================================================================
 -- PROCEDIMIENTOS ALMACENADOS

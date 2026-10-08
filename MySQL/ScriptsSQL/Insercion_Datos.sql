@@ -22,16 +22,15 @@ CREATE TABLE stg_sabana
 );
 
 
--- Orden obligatorio por las FK
-INSERT intO organizacion (nombre_organizacion, sector, pais, tamano_empleados)
+INSERT INTO organizacion (nombre_organizacion, sector, pais, tamano_empleados)
 SELECT DISTINCT nombre_organizacion, sector_organizacion, pais_organizacion, tamano_empleados_organizacion
 FROM stg_sabana;
 
-INSERT intO tipo_dato (nombre_tipo_dato, categoria_sensibilidad)
+INSERT INTO tipo_dato (nombre_tipo_dato, categoria_sensibilidad)
 SELECT DISTINCT tipo_dato_expuesto, categoria_sensibilidad_dato
 FROM stg_sabana;
 
-INSERT intO brecha (codigo_brecha, id_organizacion, fecha_ocurrencia, fecha_deteccion, vector_ataque, severidad,
+INSERT INTO brecha (codigo_brecha, id_organizacion, fecha_ocurrencia, fecha_deteccion, vector_ataque, severidad,
                     registros_afectados, costo_estimado)
 SELECT DISTINCT s.codigo_brecha,
                 o.id_organizacion,
@@ -44,7 +43,7 @@ SELECT DISTINCT s.codigo_brecha,
 FROM stg_sabana s
          JOIN organizacion o ON o.nombre_organizacion = s.nombre_organizacion;
 
-INSERT intO usuario (codigo_usuario, pseudonimo, email_hash, pais_residencia, fecha_registro, id_organizacion)
+INSERT INTO usuario (codigo_usuario, pseudonimo, email_hash, pais_residencia, fecha_registro, id_organizacion)
 SELECT DISTINCT s.codigo_usuario,
                 s.pseudonimo_usuario,
                 s.email_hash_usuario,
@@ -54,7 +53,7 @@ SELECT DISTINCT s.codigo_usuario,
 FROM stg_sabana s
          JOIN organizacion o ON o.nombre_organizacion = s.nombre_organizacion;
 
-INSERT intO exposicion_dato (id_usuario, id_brecha, id_tipo_dato, fecha_notificacion)
+INSERT INTO exposicion_dato (id_usuario, id_brecha, id_tipo_dato, fecha_notificacion)
 SELECT u.id_usuario, b.id_brecha, t.id_tipo_dato, s.fecha_notificacion_usuario
 FROM stg_sabana s
          JOIN usuario u ON u.codigo_usuario = s.codigo_usuario
