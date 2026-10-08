@@ -15,5 +15,4 @@ Análisis de Brechas de Seguridad
         - `Creacion_Tablas.sql` – creación del esquema (tablas, relaciones).
         - `Insercion_Datos.sql` – carga de datos de prueba.
         - `Consultas.sql` – consultas requeridas.
-        - `Procedimientos_Indices.sql` – procedimientos almacenados (CRUD: insertar/actualizar/eliminar laboratorios, medicamentos, etc.).
     - `Docs/` – documentación de abastecimiento y prompts de interacción con IA.
